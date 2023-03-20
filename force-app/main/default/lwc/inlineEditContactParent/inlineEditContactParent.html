@@ -1,0 +1,42 @@
+<template>
+  <div class="card slds-var-p-around_medium">
+    <lightning-card title={cardTitle}>
+      <lightning-button-icon
+        slot="actions"
+        icon-name="utility:refresh"
+        alternative-text="Refresh"
+        title="Refresh"
+        label="Refresh"
+        onclick={handleRefresh}
+        class="slds-var-m-right_x-small"
+        size="large"
+        ><label>Refresh</label>
+      </lightning-button-icon>
+      <lightning-button-icon
+        variant="brand"
+        slot="actions"
+        icon-name="utility:record_create"
+        alternative-text="New"
+        title="New"
+        label="New"
+        onclick={handleCreateNewContact}
+        size="large"
+        ><label>New Contact</label></lightning-button-icon
+      >
+
+      <template if:true={contacts}>
+        <c-inline-contact-child
+          accid={recordId}
+          accname={accountName}
+          contacts={contacts}
+          ondeletecontact={handleDelete}
+          oneditcontact={handleEdit}
+          onerror={handleError}
+          onrefresh={handleRefresh}
+        ></c-inline-contact-child>
+      </template>
+
+      <template if:true={errors}> Something went wrong: {errors} </template>
+    </lightning-card>
+  </div>
+</template>
